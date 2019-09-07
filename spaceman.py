@@ -71,6 +71,7 @@ def spaceman(secret_word):
     print("If you can guess all the letters, you win!")
     
     letters_guessed = []
+    num_incorrect_guesses = 0
 
     while True:
         letter = input("Guess a letter: ")
@@ -85,6 +86,12 @@ def spaceman(secret_word):
             print("Guess was in secret word!")
         else:
             print("Guess was not in secret word")
+            num_incorrect_guesses += 1
+            print("You have {} guesses left out of 7".format(num_incorrect_guesses))
+
+        if num_incorrect_guesses > 7:
+            print("You lost")
+            break
 
         print("Guessed word so far: ", get_guessed_word(secret_word, letters_guessed))
 
