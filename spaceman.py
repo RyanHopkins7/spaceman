@@ -38,9 +38,7 @@ def get_guessed_word(secret_word, letters_guessed):
     Returns: 
         string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.  For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
-    guessed_word = ["_"] * len(secret_word)
-    
-    guessed_word[:] = [i if i in letters_guessed else "_" for i in secret_word]
+    guessed_word = [i if i in letters_guessed else "_" for i in secret_word]
     
     return "".join(guessed_word)
 
@@ -53,10 +51,7 @@ def is_guess_in_word(guess, secret_word):
     Returns:
         bool: True if the guess is in the secret_word, False otherwise
     '''
-    #TODO: check if the letter guess is in the secret word
-
-    pass
-
+    return guess in secret_word
 
 
 
