@@ -24,8 +24,8 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns: 
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
-    matching_letters = [i for i in letters_guessed if i in secret_word]
-    if len(matching_letters) == len(secret_word):
+    matching_letters = "".join([i for i in secret_word if i in letters_guessed])
+    if matching_letters == secret_word:
         return True
     return False
 
@@ -41,6 +41,8 @@ def get_guessed_word(secret_word, letters_guessed):
     guessed_word = [i if i in letters_guessed else "_" for i in secret_word]
     
     return "".join(guessed_word)
+
+
 
 def is_guess_in_word(guess, secret_word):
     '''
@@ -63,19 +65,34 @@ def spaceman(secret_word):
     '''
 
 
-    #TODO: show the player information about the game according to the project spec
+    print("Hello and welcome to Spaceman! Here's how the game works:")
+    print("You are given a number of blanks representing a secret word. You can guess any letter. ")
+    print("If the letter you guess is in the secret word, the spot where that letter is will be filled in.")
+    print("If you can guess all the letters, you win!")
+    
+    letters_guessed = []
 
-    #TODO: Ask the player to guess one letter per round and check that it is only one letter
+    while True:
+        letter = input("Guess a letter: ")
+        
+        if len(letter) != 1:
+            print("You must enter exactly one character as a guess")
+            continue
+        
+        letters_guessed.append(letter)
 
-    #TODO: Check if the guessed letter is in the secret or not and give the player feedback
+        if is_guess_in_word(letter, secret_word):
+            print("Guess was in secret word!")
+        else:
+            print("Guess was not in secret word")
 
-    #TODO: show the guessed word so far
+        print("Guessed word so far: ", get_guessed_word(secret_word, letters_guessed))
 
-    #TODO: check if the game has been won or lost
-
-
-
-
+        if is_word_guessed(secret_word, letters_guessed):
+            print("You won!")
+            break
+        
+        print()
 
 
 #These function calls that will start the game
