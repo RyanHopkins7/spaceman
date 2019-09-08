@@ -80,6 +80,10 @@ def spaceman(secret_word):
             print("You must enter exactly one character as a guess")
             continue
         
+        if letter in letters_guessed:
+            print("You already guessed {}!".format(letter))
+            continue
+        
         letters_guessed.append(letter)
 
         if is_guess_in_word(letter, secret_word):
@@ -87,10 +91,11 @@ def spaceman(secret_word):
         else:
             print("Guess was not in secret word")
             num_incorrect_guesses += 1
-            print("You have {} guesses left out of 7".format(num_incorrect_guesses))
+            print("You are on guess {} out of {} max guesses".format(num_incorrect_guesses, len(secret_word)))
 
-        if num_incorrect_guesses > 7:
+        if num_incorrect_guesses > len(secret_word):
             print("You lost")
+            print("Secret word was: ", secret_word)
             break
 
         print("Guessed word so far: ", get_guessed_word(secret_word, letters_guessed))
