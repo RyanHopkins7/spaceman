@@ -1,3 +1,3 @@
-# spaceman
+# Spaceman
 
-A version of hangman. This is a project for my back end web class.
+A version of hangman
