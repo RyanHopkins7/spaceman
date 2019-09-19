@@ -86,6 +86,10 @@ def spaceman(secret_word):
 
     while True:
         letter = input("Guess a letter: ").lower()
+
+        if letter == secret_word:
+            print("Congragulations, you guessed the secret word and won!")
+            break
         
         if len(letter) != 1:
             print("You must enter exactly one character as a guess")
@@ -120,4 +124,4 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
-spaceman(secret_word)
+spaceman("apricot")
