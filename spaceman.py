@@ -29,6 +29,11 @@ def is_word_guessed(secret_word, letters_guessed):
         return True
     return False
 
+def test_is_word_guessed():
+    assert is_word_guessed("asdASDfGaa", ['a','s','d','A','S','D','f','G','Z','g']) == True
+    assert is_word_guessed("!@#(*%$&@)OIJSIGUaksfmewiu", ['a','b','%','F',':']) == False
+    assert is_word_guessed("zzzzzzzzzzzzzzzz", ["z"]) == True
+
 def get_guessed_word(secret_word, letters_guessed):
     '''
     A function that is used to get a string showing the letters guessed so far in the secret word and underscores for letters that have not been guessed yet.
@@ -42,7 +47,10 @@ def get_guessed_word(secret_word, letters_guessed):
     
     return "".join(guessed_word)
 
-
+def test_get_guessed_word():
+    assert get_guessed_word("bananas", ['b','a','g','d','z','^']) == "ba_a_a_"
+    assert get_guessed_word("a$aaaaaaaaaaaaaaaaz", ['a', 'b']) == "a_aaaaaaaaaaaaaaaa_"
+    assert get_guessed_word("g", ['a','v','^']) == "_"
 
 def is_guess_in_word(guess, secret_word):
     '''
@@ -55,7 +63,10 @@ def is_guess_in_word(guess, secret_word):
     '''
     return guess in secret_word
 
-
+def test_is_guess_in_word():
+    assert is_guess_in_word("a", "bananas") == True
+    assert is_guess_in_word("p", "qwerty@#$") == False
+    assert is_guess_in_word("o", "poor") == True
 
 def spaceman(secret_word):
     '''
@@ -74,7 +85,7 @@ def spaceman(secret_word):
     num_incorrect_guesses = 0
 
     while True:
-        letter = input("Guess a letter: ")
+        letter = input("Guess a letter: ").lower()
         
         if len(letter) != 1:
             print("You must enter exactly one character as a guess")
